@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nalitoo Play — Mobile Games. No Nonsense.</title>
+<meta name="description" content="Nalitoo Play builds loud, fast, honest casual games for mobile. No timers, no paywalls, no nonsense.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFCEF;
+    --ink:#111111;
+    --yellow:#FFE500;
+    --blue:#2B4CFF;
+    --pink:#FF5C8A;
+    --green:#00D084;
+    --white:#ffffff;
+    --b:3px solid var(--ink);
+    --sh:7px 7px 0 var(--ink);
+    --sh-lg:11px 11px 0 var(--ink);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background-color:var(--paper);
+    background-image:radial-gradient(rgba(17,17,17,.13) 1.3px,transparent 1.3px);
+    background-size:24px 24px;
+    color:var(--ink);
+    font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp{font-family:'Archivo Black',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.98;letter-spacing:-.015em}
+  a{color:var(--ink);text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 26px}
+  .mono{font-family:'Space Mono',ui-monospace,Menlo,monospace}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:70;background:var(--white);border-bottom:var(--b)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+  .logo{display:flex;align-items:center;gap:0;border:var(--b);background:var(--ink);box-shadow:4px 4px 0 var(--yellow)}
+  .logo .a{background:var(--ink);color:var(--yellow);padding:8px 12px;font-family:'Archivo Black',sans-serif;font-size:1.06rem;letter-spacing:-.01em;text-transform:uppercase}
+  .logo .b{background:var(--yellow);color:var(--ink);padding:8px 12px;font-family:'Archivo Black',sans-serif;font-size:1.06rem;letter-spacing:-.01em;text-transform:uppercase}
+  .nav ul{display:flex;gap:26px;list-style:none}
+  .nav ul a{font-family:'Space Mono',monospace;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:3px solid transparent;padding-bottom:2px}
+  .nav ul a:hover{border-bottom-color:var(--ink)}
+  .nav .cta{
+    font-family:'Space Mono',monospace;font-size:.8rem;font-weight:700;text-transform:uppercase;
+    background:var(--yellow);border:var(--b);padding:9px 16px;box-shadow:4px 4px 0 var(--ink);
+    transition:transform .12s ease,box-shadow .12s ease;white-space:nowrap;
+  }
+  .nav .cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+
+  /* ---------- marquee ---------- */
+  .ticker{background:var(--ink);color:var(--yellow);border-bottom:var(--b);overflow:hidden;padding:11px 0}
+  .ticker .track{display:flex;gap:0;white-space:nowrap;animation:slide 26s linear infinite;width:max-content}
+  .ticker span{font-family:'Space Mono',monospace;font-size:.86rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:0 26px}
+  .ticker span:after{content:"★";margin-left:26px;color:var(--pink)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:74px 0 78px;position:relative}
+  .badge{
+    display:inline-block;background:var(--pink);border:var(--b);color:var(--white);
+    font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+    padding:8px 16px;box-shadow:4px 4px 0 var(--ink);transform:rotate(-2deg);margin-bottom:30px;
+  }
+  .hero h1{font-size:clamp(2.5rem,7.2vw,5.1rem);max-width:16ch;margin-bottom:28px}
+  .hero h1 mark{background:var(--yellow);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .hero h1 u{text-decoration:none;color:var(--blue)}
+  .hero .lead{font-size:1.12rem;max-width:58ch;margin-bottom:36px;font-weight:500}
+  .btns{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;border:var(--b);padding:15px 30px;box-shadow:var(--sh);
+    font-family:'Space Mono',monospace;font-size:.86rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .btn:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 var(--ink)}
+  .btn-y{background:var(--yellow)}
+  .btn-w{background:var(--white)}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border:var(--b);background:var(--white);box-shadow:var(--sh-lg);margin-bottom:0}
+  .stats div{padding:26px 20px;border-right:var(--b);text-align:center}
+  .stats div:last-child{border-right:0}
+  .stats div:nth-child(1){background:var(--yellow)}
+  .stats div:nth-child(3){background:var(--blue);color:var(--white)}
+  .stats .n{font-family:'Archivo Black',sans-serif;font-size:2.1rem;line-height:1;margin-bottom:6px}
+  .stats small{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+
+  /* ---------- sections ---------- */
+  section{padding:82px 0}
+  .shead{display:flex;align-items:flex-end;gap:18px;margin-bottom:40px;flex-wrap:wrap}
+  .shead .num{
+    background:var(--ink);color:var(--yellow);font-family:'Archivo Black',sans-serif;
+    font-size:1.1rem;padding:9px 15px;border:var(--b);box-shadow:4px 4px 0 var(--pink);flex:none;
+  }
+  .shead h2{font-size:clamp(1.7rem,3.8vw,2.6rem);flex:1;min-width:280px}
+  .shead .note{font-family:'Space Mono',monospace;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--white);border:var(--b);padding:7px 12px;box-shadow:4px 4px 0 var(--ink)}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{background:var(--white);border:var(--b);box-shadow:var(--sh);padding:30px 24px;transition:transform .14s ease,box-shadow .14s ease}
+  .card:hover{transform:translate(-4px,-4px);box-shadow:11px 11px 0 var(--ink)}
+  .card .chip{
+    display:inline-block;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;
+    border:2px solid var(--ink);padding:4px 10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;
+  }
+  .card:nth-child(1) .chip{background:var(--yellow)}
+  .card:nth-child(2) .chip{background:var(--green)}
+  .card:nth-child(3) .chip{background:var(--pink);color:#fff}
+  .card h3{font-size:1.22rem;margin-bottom:12px}
+  .card p{font-size:.95rem;font-weight:450}
+
+  /* ---------- flagship ---------- */
+  .flag{display:grid;grid-template-columns:1.05fr .95fr;border:var(--b);box-shadow:var(--sh-lg);background:var(--white)}
+  .flag .l{padding:46px 40px;border-right:var(--b)}
+  .flag .l h3{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:18px}
+  .flag .l p{margin-bottom:15px;font-size:.99rem;font-weight:450}
+  .flag .r{background:var(--ink);display:grid;place-items:center;position:relative;min-height:400px;overflow:hidden}
+  .flag .r:before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,229,0,.20) 1.6px,transparent 1.6px);
+    background-size:26px 26px;
+  }
+  .flag .r .mark{
+    position:relative;width:190px;height:190px;background:var(--yellow);border:var(--b);
+    box-shadow:10px 10px 0 var(--pink);display:grid;place-items:center;transform:rotate(-4deg);
+  }
+  .flag .r .mark span{font-family:'Archivo Black',sans-serif;font-size:5.4rem;line-height:1;color:var(--ink)}
+  .tagrow{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+  .tag{font-family:'Space Mono',monospace;font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:2px solid var(--ink);background:var(--paper);padding:6px 11px}
+
+  /* ---------- rules ---------- */
+  .rules{border:var(--b);background:var(--white);box-shadow:var(--sh)}
+  .rule{display:grid;grid-template-columns:96px 1fr;border-bottom:var(--b)}
+  .rule:last-child{border-bottom:0}
+  .rule .k{
+    font-family:'Archivo Black',sans-serif;font-size:1.5rem;display:grid;place-items:center;
+    border-right:var(--b);background:var(--paper);padding:22px 0;
+  }
+  .rule:nth-child(1) .k{background:var(--yellow)}
+  .rule:nth-child(2) .k{background:var(--green)}
+  .rule:nth-child(3) .k{background:var(--blue);color:#fff}
+  .rule:nth-child(4) .k{background:var(--pink);color:#fff}
+  .rule .v{padding:22px 26px}
+  .rule .v h3{font-size:1.06rem;margin-bottom:7px}
+  .rule .v p{font-size:.94rem;font-weight:450}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--yellow);border:var(--b);box-shadow:var(--sh-lg);padding:46px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .contact h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:16px}
+  .contact p{font-weight:500}
+  .mailboxes{display:flex;flex-direction:column;gap:16px}
+  .mbox{background:var(--white);border:var(--b);box-shadow:5px 5px 0 var(--ink);padding:18px 20px}
+  .mbox small{display:block;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+  .mbox a{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;word-break:break-all;border-bottom:3px solid var(--yellow)}
+  .mbox a:hover{border-bottom-color:var(--ink)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:var(--paper);border-top:var(--b);padding:34px 0;margin-top:12px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+  footer .mono{font-size:.78rem;color:#cfcfcf}
+  footer nav{display:flex;gap:22px}
+  footer nav a{font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--yellow)}
+  footer nav a:hover{color:var(--pink)}
+
+  @media(max-width:940px){
+    .nav ul{display:none}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stats div:nth-child(2){border-right:0}
+    .stats div:nth-child(1),.stats div:nth-child(2){border-bottom:var(--b)}
+    .cards{grid-template-columns:1fr}
+    .flag{grid-template-columns:1fr}
+    .flag .l{border-right:0;border-bottom:var(--b)}
+    .contact{grid-template-columns:1fr;padding:32px 24px}
+    .rule{grid-template-columns:70px 1fr}
+    section{padding:60px 0}
+    .hero{padding:54px 0 58px}
+    .flag .l{padding:32px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/"><span class="a">Nalitoo</span><span class="b">Play</span></a>
+    <ul>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="cta" href="#contact">Say Hello →</a>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="track">
+    <span>No timers</span><span>No paywalls</span><span>No nonsense</span><span>Offline ready</span><span>Made for mobile</span>
+    <span>No timers</span><span>No paywalls</span><span>No nonsense</span><span>Offline ready</span><span>Made for mobile</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">Independent Mobile Studio</span>
+    <h1>Games that get <mark>out of the way</mark> and let you <u>play</u>.</h1>
+    <p class="lead">
+      Nalitoo Play makes loud, fast, uncomplicated casual games for phones. No energy bars,
+      no forced logins, no five-minute tutorial you cannot skip. Open it, play it, close it,
+      come back whenever you feel like it.
+    </p>
+    <div class="btns">
+      <a class="btn btn-y" href="#games">See the games</a>
+      <a class="btn btn-w" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats">
+    <div><div class="n">2018</div><small>Founded</small></div>
+    <div><div class="n">30+</div><small>Titles live</small></div>
+    <div><div class="n">95M+</div><small>Installs</small></div>
+    <div><div class="n">0</div><small>Forced ads</small></div>
+  </div>
+</div>
+
+<section id="studio">
+  <div class="wrap">
+    <div class="shead">
+      <span class="num">01</span>
+      <h2>Built by a small team that plays its own games</h2>
+      <span class="note">Est. 2018</span>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="chip">Fast</span>
+        <h3>Two-week prototypes</h3>
+        <p>If a game is not fun as a rough build inside two weeks, it does not get another two weeks. We kill it and start something better.</p>
+      </div>
+      <div class="card">
+        <span class="chip">Honest</span>
+        <h3>Ads you can skip</h3>
+        <p>Every ad is optional and clearly labelled. Rewarded ads are a bonus you choose, never a toll gate you are forced through.</p>
+      </div>
+      <div class="card">
+        <span class="chip">Tough</span>
+        <h3>Tested on cheap phones</h3>
+        <p>We test on low-end Android hardware and bad connections first. If it runs badly there, it does not ship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="games">
+  <div class="wrap">
+    <div class="shead">
+      <span class="num">02</span>
+      <h2>Our games</h2>
+      <span class="note">iOS + Android</span>
+    </div>
+    <div class="flag">
+      <div class="l">
+        <h3>Nalitoo — quick puzzles, zero pressure.</h3>
+        <p>
+          Our flagship title is a bite-sized puzzle game built around a single idea: a level
+          should be finishable in the time it takes to wait for a coffee. Every board saves
+          the moment you make a move, so closing the app is never a punishment.
+        </p>
+        <p>
+          There is no energy system, no daily streak guilt, and no leaderboard that punishes
+          you for taking a week off. Play at your own pace, or do not play at all.
+        </p>
+        <div class="tagrow">
+          <span class="tag">Puzzle</span>
+          <span class="tag">Offline</span>
+          <span class="tag">Short sessions</span>
+          <span class="tag">Free to play</span>
+        </div>
+      </div>
+      <div class="r">
+        <div class="mark"><span>N</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <div class="shead">
+      <span class="num">03</span>
+      <h2>Four things we will not do</h2>
+      <span class="note">Read this bit</span>
+    </div>
+    <div class="rules">
+      <div class="rule">
+        <div class="k">01</div>
+        <div class="v">
+          <h3>We will not sell your data</h3>
+          <p>We do not sell personal information to brokers. What we collect is described in plain language in our privacy policy.</p>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="k">02</div>
+        <div class="v">
+          <h3>We will not gate progress behind payment</h3>
+          <p>Purchases are cosmetic or convenience only. You can reach the end of our games without spending anything.</p>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="k">03</div>
+        <div class="v">
+          <h3>We will not punish you for leaving</h3>
+          <p>No streaks that decay, no timers that expire, no notifications nagging you back. Your save file waits patiently.</p>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="k">04</div>
+        <div class="v">
+          <h3>We will not ship a known crash</h3>
+          <p>Stability fixes go out before new content. A crashing game is not a game, it is a bug with artwork.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <h2>Talk to a human</h2>
+        <p>
+          Publishers, partners, players and press are all welcome. Bug reports get read by the
+          people who wrote the code. Write to the studio inbox and you will hear back.
+        </p>
+      </div>
+      <div class="mailboxes">
+        <div class="mbox">
+          <small>General &amp; Player Support</small>
+          <a href="mailto:dmgpharmaceutical0@gmail.com">dmgpharmaceutical0@gmail.com</a>
+        </div>
+        <div class="mbox">
+          <small>Business &amp; Publishing</small>
+          <a href="mailto:dmgpharmaceutical0@gmail.com">dmgpharmaceutical0@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mono">© 2026 Nalitoo Play. All rights reserved.</div>
+    <nav>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
